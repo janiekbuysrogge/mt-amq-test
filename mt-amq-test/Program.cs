@@ -20,7 +20,24 @@ namespace mt_amq_test
 
             Console.WriteLine("Configuring...");
 
-            var bus = Bus.Factory.CreateUsingActiveMq(sbc =>
+            //var bus = ConfigureRabbitMQ();
+            var bus = ConfigureActiveMQ();
+
+            Console.WriteLine("Starting...");
+            await bus.StartAsync();
+
+            Console.WriteLine("Publishing message...");
+            await bus.Publish(new Message { Text = "Hi" });
+
+            Console.WriteLine("Waiting for message to arrive...");
+            await Task.Delay(60000);
+
+            await bus.StopAsync();
+        }
+
+        private static IBusControl ConfigureActiveMQ()
+        {
+            return Bus.Factory.CreateUsingActiveMq(sbc =>
             {
                 sbc.Host("broker", h =>
                 {
@@ -33,21 +50,30 @@ namespace mt_amq_test
                 {
                     ep.Handler<Message>(context =>
                     {
-                        return Console.Out.WriteLineAsync($"Received: {context.Message.Text}");
+                        return Console.Out.WriteLineAsync($"Received from AMQ: {context.Message.Text}");
                     });
                 });
             });
+        }
 
-            Console.WriteLine("Starting...");
-            await bus.StartAsync();
+        private static IBusControl ConfigureRabbitMQ()
+        {
+            return Bus.Factory.CreateUsingRabbitMq(sbc =>
+            {
+                sbc.Host("broker", "/", h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
 
-            Console.WriteLine("Publishing message...");
-            await bus.Publish(new Message { Text = "Hi" });
-
-            Console.WriteLine("Waiting for message to arrive...");
-            await Task.Delay(15000);
-
-            await bus.StopAsync();
+                sbc.ReceiveEndpoint("test-queue", ep =>
+                {
+                    ep.Handler<Message>(context =>
+                    {
+                        return Console.Out.WriteLineAsync($"Received from RabbitMQ: {context.Message.Text}");
+                    });
+                });
+            });
         }
     }
 }
