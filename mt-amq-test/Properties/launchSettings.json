@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "mt-amq-test": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

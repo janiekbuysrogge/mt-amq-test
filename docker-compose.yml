@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  mt-amq-test:
+    image: ${DOCKER_REGISTRY-}mtamqtest
+    build:
+      context: .
+      dockerfile: mt-amq-test/Dockerfile
+# AMQ 5 broker
+#  broker:
+#    image: rmohr/activemq    
+#    hostname: 'broker'
+#    ports:
+#      - '8160:61616'
+#      - '8161:8161'
+
+# Official Redhat image
+  broker:
+    image: registry.redhat.io/amq7/amq-broker:7.4
+    hostname: 'broker'
+    ports:
+      - '8160:61616'
+      - '8161:8161'
+    environment:
+      AMQ_PROTOCOL: openwire,amqp,stomp,mqtt,hornetq
+      AMQ_QUEUES: demoQueue
+      AMQ_ADDRESSES: demoTopic
+      AMQ_USER: "admin"
+      AMQ_PASSWORD: "admin"

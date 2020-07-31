@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mt-amq-test", "mt-amq-test\mt-amq-test.csproj", "{847DD1C8-CE83-41DE-91AF-2C505FABFED6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6C9EB2B4-34B8-4CC2-9C6A-5EF0C854E493}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{847DD1C8-CE83-41DE-91AF-2C505FABFED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{847DD1C8-CE83-41DE-91AF-2C505FABFED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{847DD1C8-CE83-41DE-91AF-2C505FABFED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{847DD1C8-CE83-41DE-91AF-2C505FABFED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C9EB2B4-34B8-4CC2-9C6A-5EF0C854E493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C9EB2B4-34B8-4CC2-9C6A-5EF0C854E493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C9EB2B4-34B8-4CC2-9C6A-5EF0C854E493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C9EB2B4-34B8-4CC2-9C6A-5EF0C854E493}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96C5FB15-3060-40DB-9940-A4066B107162}
+	EndGlobalSection
+EndGlobal
